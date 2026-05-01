@@ -1,0 +1,214 @@
+/* ─────────────────────────────────────────────
+   SPEED TEST PAGE LAYOUT
+───────────────────────────────────────────── */
+.speed-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 32px 80px;
+}
+
+/* ─────────────────────────────────────────────
+   SPEED CARD
+───────────────────────────────────────────── */
+.speed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+}
+
+/* Status label above the number */
+.speed-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────────
+   BIG NUMBER DISPLAY
+───────────────────────────────────────────── */
+.speed-display {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.speed-value {
+    font-size: clamp(5rem, 16vw, 9rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+}
+
+.speed-unit {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+/* ─────────────────────────────────────────────
+   SVG RING INDICATOR
+   Overlaid behind the number, purely decorative
+───────────────────────────────────────────── */
+.speed-ring-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -44%);
+    width: 320px;
+    height: 320px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.18;
+}
+
+.speed-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 6;
+}
+
+.ring-fill {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: calc(2 * 3.14159 * 52);
+    stroke-dashoffset: calc(2 * 3.14159 * 52);
+    transition: stroke-dashoffset 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────
+   START BUTTON
+───────────────────────────────────────────── */
+.btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 12px 32px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-start:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.btn-start:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Spinner inside button while testing */
+.btn-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
+   META ROW  (ping / download / status)
+───────────────────────────────────────────── */
+.speed-meta {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(13, 20, 34, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 36px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 100px;
+}
+
+.meta-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.meta-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.meta-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    margin: 0 24px;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .speed-value { font-size: 5.5rem; }
+
+    .speed-ring-wrap {
+        width: 240px;
+        height: 240px;
+    }
+
+    .speed-meta {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 24px;
+    }
+
+    .meta-divider {
+        width: 60px;
+        height: 1px;
+        margin: 0;
+    }
+}
