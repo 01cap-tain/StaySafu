@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaySafu – Internet Speed</title>
+    <link rel="stylesheet" href="./style-sheet/index.css">
+    <link rel="stylesheet" href="./style-sheet/InternetSpeed.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ═══════════════════ HEADER ═══════════════════ -->
+    <header class="site-header">
+        <div class="header-pill">
+            <a href="./index.html" class="logo-bubble">
+                <img src="./Assets/logo/Safu-logo.png" alt="StaySafu" class="logo-img">
+            </a>
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Solutions</a>
+                <a href="#" class="nav-link">Audit</a>
+                <a href="#" class="nav-link">Pricing</a>
+            </nav>
+            <div class="nav-sep"></div>
+            <div class="header-actions">
+                <a href="#" class="btn-signin">Sign In</a>
+                <a href="#" class="btn-signup">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════ SPEED TEST ═══════════════════ -->
+    <main class="speed-page">
+        <div class="speed-card">
+
+            <p class="speed-label" id="statusText">Your internet speed</p>
+
+            <div class="speed-display">
+                <span class="speed-value" id="speedValue">—</span>
+                <span class="speed-unit" id="speedUnit">Mbps</span>
+            </div>
+
+            <!-- Ring progress indicator -->
+            <div class="speed-ring-wrap">
+                <svg class="speed-ring" viewBox="0 0 120 120">
+                    <circle class="ring-track" cx="60" cy="60" r="52"/>
+                    <circle class="ring-fill" cx="60" cy="60" r="52" id="ringFill"/>
+                </svg>
+            </div>
+
+            <button class="btn-start" id="startBtn" onclick="startTest()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+                Start Test
+            </button>
+
+            <!-- Extra metrics (shown after test) -->
+            <div class="speed-meta" id="speedMeta">
+                <div class="meta-item">
+                    <span class="meta-value" id="pingVal">—</span>
+                    <span class="meta-label">Ping (ms)</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-item">
+                    <span class="meta-value" id="downloadVal">—</span>
+                    <span class="meta-label">Download</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-item">
+                    <span class="meta-value" id="statusVal">—</span>
+                    <span class="meta-label">Status</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-logo-wrap">
+                <img src="./Assets/logo/Safu-logo.png" alt="StaySafu" class="footer-logo">
+            </div>
+            <nav class="footer-nav">
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Security Audit</a>
+                <a href="#" class="footer-link">Documentation</a>
+            </nav>
+        </div>
+        <div class="footer-copy">
+            © 2024 STAYSAFU. PROTECTED BY TECHNICAL PRECISION.
+        </div>
+    </footer>
+
+    <script>
+           </script>
+
+</body>
+</html>
