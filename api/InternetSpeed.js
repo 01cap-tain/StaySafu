@@ -1,8 +1,12 @@
-let testing = false;
+let global = {
+  network: {
+    testing: false,
+  },
+};
 
 async function startTest() {
-  if (testing) return;
-  testing = true;
+  if (global.network.te) return;
+  global.network.te = true;
 
   const btn = document.getElementById("startBtn");
   const speedVal = document.getElementById("speedValue");
@@ -14,9 +18,9 @@ async function startTest() {
 
   // Reset UI
   speedVal.textContent = "0";
-  statusTxt.textContent = "Testing…";
+  statusTxt.textContent = "global.network.te…";
   btn.disabled = true;
-  btn.innerHTML = `<span class="btn-spinner"></span> Testing…`;
+  btn.innerHTML = `<span class="btn-spinner"></span> global.network.te…`;
   setRing(0);
 
   // ── Ping test ────────────────────────────────────────────
@@ -57,7 +61,7 @@ async function startTest() {
   } catch (err) {
     statusTxt.textContent = "Test failed – check connection";
     resetBtn();
-    testing = false;
+    global.network.te = false;
     return;
   }
 
@@ -75,7 +79,7 @@ async function startTest() {
 
   setRing(1);
   resetBtn();
-  testing = false;
+  global.network.te = false;
 }
 
 function setRing(pct) {
