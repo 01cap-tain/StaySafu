@@ -22,10 +22,11 @@
                 <img src="./Assets/logo/Safu-logo.png" alt="StaySafu" class="logo-img">
             </a>
             <nav class="header-nav">
-                <a href="#" class="nav-link">Solutions</a>
-                <a href="#" class="nav-link">Audit</a>
-                <a href="#" class="nav-link">Pricing</a>
+                <a href="/" class="nav-link">Solutions</a>
+                <a href="/internetSpeed.html" class="nav-link">Audit</a>
+                <a href="/profile-overview.html" class="nav-link">Pricing</a>
             </nav>
+
             <div class="nav-sep"></div>
             <div class="header-actions">
                 <a href="#" class="btn-signin">Sign In</a>
@@ -53,7 +54,7 @@
                 </svg>
             </div>
 
-            <button class="btn-start" id="startBtn" onclick="startTest()">
+            <button class="btn-start" id="startBtn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <polygon points="5,3 19,12 5,21" />
                 </svg>
@@ -63,7 +64,7 @@
             <!-- Extra metrics (shown after test) -->
             <div class="speed-meta" id="speedMeta">
                 <div class="meta-item">
-                    <span class="meta-value" id="pingVal">—</span>
+                    <span class="meta-value" id="pingVal"></span>
                     <span class="meta-label">Ping (ms)</span>
                 </div>
                 <div class="meta-divider"></div>
@@ -99,7 +100,8 @@
         </div>
     </footer>
 
-    <script src="./api/InternetSpeed.js"></script>
+    <script type="module" src="./app.js"></script>
+    <!-- <script src="api/frontend.js"></script> -->
 
 </body>
 

@@ -2,11 +2,12 @@ let global = {
   network: {
     testing: false,
   },
+  currentPage: window.location.pathname,
 };
 
-async function startTest() {
-  if (global.network.te) return;
-  global.network.te = true;
+export async function startTest() {
+  if (global.network.testing) return;
+  global.network.testing = true;
 
   const btn = document.getElementById("startBtn");
   const speedVal = document.getElementById("speedValue");
@@ -18,9 +19,9 @@ async function startTest() {
 
   // Reset UI
   speedVal.textContent = "0";
-  statusTxt.textContent = "global.network.te…";
+  statusTxt.textContent = "Testing…";
   btn.disabled = true;
-  btn.innerHTML = `<span class="btn-spinner"></span> global.network.te…`;
+  btn.innerHTML = `<span class="btn-spinner"></span> Testing`;
   setRing(0);
 
   // ── Ping test ────────────────────────────────────────────
@@ -61,7 +62,7 @@ async function startTest() {
   } catch (err) {
     statusTxt.textContent = "Test failed – check connection";
     resetBtn();
-    global.network.te = false;
+    global.network.testing = false;
     return;
   }
 
@@ -79,7 +80,7 @@ async function startTest() {
 
   setRing(1);
   resetBtn();
-  global.network.te = false;
+  global.network.testing = false;
 }
 
 function setRing(pct) {
@@ -92,4 +93,57 @@ function resetBtn() {
   const btn = document.getElementById("startBtn");
   btn.disabled = false;
   btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Retest`;
+}
+
+function init() {
+  addColor();
+  const startBtn = document.querySelector("#startBtn");
+  if (startBtn) startBtn.addEventListener("click", startTest);
+  const scanBtn = document.querySelector(".btn-scan");
+  if (scanBtn) scanBtn.addEventListener("click", urlAnalysis);
+}
+
+function addColor() {
+  const navlinks = document.querySelectorAll(".nav-link");
+  navlinks.forEach((link) => {
+    if (link.getAttribute("href") === global.currentPage) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", init);
+
+// scan POST and GET
+
+async function urlAnalysis() {
+  const url = document.querySelector(".search-input").value;
+
+  try {
+    const analysisRes = await fetch("/api/scanUrl.js", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ url }),
+    });
+    console.log("scan status:", analysisRes.status);
+    const analysisId = await analysisRes.json();
+    console.log("scan response:", analysisId);
+
+    const res = await fetch(`/api/analysis.js?id=${analysisId.data.id}`);
+    console.log("analysis status:", res.status);
+    const data = await res.json();
+    console.log("analysis result:", data);
+  } catch (err) {
+    console.error("fetch error:", err);
+  }
+}
+
+document.querySelector(".search-input").addEventListener("input", clicker);
+
+function clicker(e) {
+  if (e.key === "Enter") {
+    urlAnalysis();
+  }
 }

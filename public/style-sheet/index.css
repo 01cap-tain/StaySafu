@@ -126,6 +126,10 @@ img {
     background: rgba(255, 255, 255, 0.06);
 }
 
+.nav-link.active {
+    background: rgba(143, 192, 118, 0.136);
+}
+
 /* Thin vertical separator */
 .nav-sep {
     width: 1px;
