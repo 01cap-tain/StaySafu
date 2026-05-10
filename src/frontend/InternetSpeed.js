@@ -5,6 +5,15 @@ let global = {
   currentPage: window.location.pathname,
 };
 
+function addColor() {
+  const navlinks = document.querySelectorAll(".nav-link");
+  navlinks.forEach((link) => {
+    if (link.getAttribute("href") === global.currentPage) {
+      link.classList.add("active");
+    }
+  });
+}
+
 export async function startTest() {
   if (global.network.testing) return;
   global.network.testing = true;
@@ -95,55 +104,9 @@ function resetBtn() {
   btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Retest`;
 }
 
-function init() {
-  addColor();
-  const startBtn = document.querySelector("#startBtn");
+const startBtn = document.querySelector("#startBtn");
+function internetSpeedInit() {
   if (startBtn) startBtn.addEventListener("click", startTest);
-  const scanBtn = document.querySelector(".btn-scan");
-  if (scanBtn) scanBtn.addEventListener("click", urlAnalysis);
 }
 
-function addColor() {
-  const navlinks = document.querySelectorAll(".nav-link");
-  navlinks.forEach((link) => {
-    if (link.getAttribute("href") === global.currentPage) {
-      link.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("DOMContentLoaded", init);
-
-// scan POST and GET
-
-async function urlAnalysis() {
-  const url = document.querySelector(".search-input").value;
-
-  try {
-    const analysisRes = await fetch("/api/scanUrl.js", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ url }),
-    });
-    console.log("scan status:", analysisRes.status);
-    const analysisId = await analysisRes.json();
-    console.log("scan response:", analysisId);
-
-    const res = await fetch(`/api/analysis.js?id=${analysisId.data.id}`);
-    console.log("analysis status:", res.status);
-    const data = await res.json();
-    console.log("analysis result:", data);
-  } catch (err) {
-    console.error("fetch error:", err);
-  }
-}
-
-document.querySelector(".search-input").addEventListener("input", clicker);
-
-function clicker(e) {
-  if (e.key === "Enter") {
-    urlAnalysis();
-  }
-}
+export { internetSpeedInit, addColor };

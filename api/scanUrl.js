@@ -1,4 +1,4 @@
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const { url } = req.body;
   try {
     const response = await fetch("https://www.virustotal.com/api/v3/urls", {
@@ -15,4 +15,4 @@ module.exports = async function handler(req, res) {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
+}

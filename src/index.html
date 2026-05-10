@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./style-sheet/spinner.css">
+    <script type="module" defer src="./index.js"></script>
+    <!-- <script type="module" defer src="./frontend/app.js"></script> -->
 </head>
 
 <body>
@@ -70,8 +73,7 @@
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
                 </span>
-                <input type="text" class="search-input"
-                    placeholder="Enter endpoint to analyze (e.g. https://analyze-endpoint.sec/pro…)" />
+                <input type="text" class="search-input" placeholder="Enter Url to analyze" />
                 <button class="btn-scan">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -163,6 +165,11 @@
             </div>
         </div>
     </section>
+    <div class="loader show">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+    </div>
 
     <!-- ═══════════════════ FOOTER ═══════════════════ -->
     <footer class="site-footer">
@@ -182,7 +189,7 @@
         </div>
     </footer>
 
-    <script type="module" src="./app.js"></script>
+
 </body>
 
 </html>

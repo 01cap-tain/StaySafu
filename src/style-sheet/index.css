@@ -27,6 +27,11 @@ html {
     scroll-behavior: smooth;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 /* Dark dot-grid background — entire page */
 body {
     font-family: var(--font);
@@ -543,8 +548,19 @@ img {
    RESPONSIVE
 ───────────────────────────────────────────── */
 @media (max-width: 900px) {
+    .site-header {
+        top: 12px;
+        padding: 0 16px;
+    }
 
-    .features-grid,
+    .header-pill {
+        max-width: 100%;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .stats-grid {
         grid-template-columns: 1fr;
         max-width: 480px;
@@ -565,14 +581,53 @@ img {
 }
 
 @media (max-width: 640px) {
+    .site-header {
+        align-items: center;
+        padding: 0 14px;
+    }
+
     .header-pill {
-        padding: 4px 8px 4px 4px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: auto;
+        max-width: calc(100vw - 28px);
+        border-radius: var(--radius-pill);
+        padding: 6px 10px 6px 6px;
+        gap: 0;
+    }
+
+    .logo-bubble {
+        width: 40px;
+        height: 40px;
+        margin: -1px 5px -1px 0;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-nav,
+    .header-actions {
+        flex-shrink: 1;
+        gap: 1px;
+    }
+
+    .nav-sep {
+        display: block;
+        height: 18px;
+        margin: 0 4px;
     }
 
     .nav-link,
     .btn-signin {
         padding: 7px 10px;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .btn-signup {
+        padding: 7px 12px;
+        font-size: 0.82rem;
     }
 
     .quote-widget {
@@ -583,8 +638,127 @@ img {
         padding: 130px 20px 60px;
     }
 
+    .hero-section::before {
+        width: 92vw;
+        height: 280px;
+    }
+
+    .hero-heading {
+        font-size: clamp(2rem, 12vw, 2.8rem);
+    }
+
+    .hero-search {
+        align-items: stretch;
+        flex-direction: column;
+        border-radius: 24px;
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+    .search-input {
+        min-height: 44px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-scan {
+        justify-content: center;
+        width: 100%;
+        min-height: 46px;
+    }
+
     .features-section,
     .stats-section {
         padding: 60px 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 26px 22px;
+    }
+
+    .stats-heading {
+        font-size: 1.55rem;
+    }
+
+    .stat-card {
+        padding: 36px 20px;
+    }
+
+    .stat-value {
+        font-size: 2.65rem;
+    }
+
+    .site-footer {
+        padding: 34px 20px 24px;
+    }
+
+    .footer-inner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-header {
+        padding: 0 10px;
+    }
+
+    .header-pill {
+        max-width: calc(100vw - 20px);
+        padding: 5px 8px 5px 5px;
+    }
+
+    .logo-bubble {
+        width: 36px;
+        height: 36px;
+        margin-right: 4px;
+    }
+
+    .logo-img {
+        width: 29px;
+        height: 29px;
+    }
+
+    .nav-sep {
+        height: 16px;
+        margin: 0 2px;
+    }
+
+    .nav-link,
+    .btn-signin,
+    .btn-signup {
+        padding: 6px 7px;
+        font-size: 0.74rem;
+    }
+
+    .hero-section {
+        padding: 120px 16px 52px;
+    }
+
+    .hero-subtext {
+        margin-bottom: 30px;
+    }
+
+    .features-section,
+    .stats-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        gap: 12px;
     }
 }
