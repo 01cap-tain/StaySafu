@@ -1,8 +1,8 @@
 import { urlAnalysis, init } from "./frontend/app.js";
 import { internetSpeedInit, addColor } from "./frontend/InternetSpeed.js";
-import "./style-sheet/index.css";
-import "./style-sheet/internetSpeed.css";
-import "./style-sheet/spinner.css";
+// import "./style-sheet/index.css";
+// import "./style-sheet/internetSpeed.css";
+// import "./style-sheet/spinner.css";
 
 // window.addEventListener("DOMContentLoaded", init);
 // window.addEventListener("DOMContentLoaded", internetSpeedInit);

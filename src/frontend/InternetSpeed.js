@@ -66,6 +66,7 @@ export async function startTest() {
       const elapsed = (performance.now() - dlStart) / 1000;
       const mbps = ((bytes * 8) / elapsed / 1_000_000).toFixed(1);
       speedVal.textContent = mbps;
+      console.log(mbps);
       setRing(Math.min(bytes / total, 1));
     }
   } catch (err) {
