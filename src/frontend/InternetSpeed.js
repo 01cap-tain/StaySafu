@@ -27,10 +27,9 @@ export async function startTest() {
   const statusVal = document.getElementById("statusVal");
 
   // Reset UI
-  speedVal.textContent = "0";
-  statusTxt.textContent = "Testing…";
-  btn.disabled = true;
-  btn.innerHTML = `<span class="btn-spinner"></span> Testing`;
+  if (speedVal) speedVal.textContent = "0";
+  if (statusTxt) statusTxt.textContent = "Testing…";
+  if (btn) { btn.disabled = true; btn.innerHTML = `<span class="btn-spinner"></span> Testing`; }
   setRing(0);
 
   // ── Ping test ────────────────────────────────────────────
@@ -42,7 +41,7 @@ export async function startTest() {
     });
   } catch (_) {}
   const ping = Math.round(performance.now() - pingStart);
-  pingVal.textContent = ping + " ms";
+  if (pingVal) pingVal.textContent = ping + " ms";
 
   // ── Download speed test ──────────────────────────────────
   // Fetch a ~5 MB public file and measure throughput
@@ -65,12 +64,11 @@ export async function startTest() {
       // Live speed update
       const elapsed = (performance.now() - dlStart) / 1000;
       const mbps = ((bytes * 8) / elapsed / 1_000_000).toFixed(1);
-      speedVal.textContent = mbps;
-      console.log(mbps);
+      if (speedVal) speedVal.textContent = mbps;
       setRing(Math.min(bytes / total, 1));
     }
   } catch (err) {
-    statusTxt.textContent = "Test failed – check connection";
+    if (statusTxt) statusTxt.textContent = "Test failed – check connection";
     resetBtn();
     global.network.testing = false;
     return;
@@ -80,27 +78,30 @@ export async function startTest() {
   const finalMbps = ((bytes * 8) / elapsed / 1_000_000).toFixed(1);
 
   // ── Final display ────────────────────────────────────────
-  speedVal.textContent = finalMbps;
-  statusTxt.textContent = "Test complete";
-  dlVal.textContent = finalMbps + " Mbps";
-  statusVal.textContent =
-    finalMbps > 25 ? "✓ Good" : finalMbps > 5 ? "~ Fair" : "✗ Slow";
-  statusVal.style.color =
-    finalMbps > 25 ? "#00d4ff" : finalMbps > 5 ? "#f59e0b" : "#ef4444";
+  if (speedVal) speedVal.textContent = finalMbps;
+  if (statusTxt) statusTxt.textContent = "Test complete";
+  if (dlVal) dlVal.textContent = finalMbps + " Mbps";
+  if (statusVal) {
+    statusVal.textContent = finalMbps > 25 ? "✓ Good" : finalMbps > 5 ? "~ Fair" : "✗ Slow";
+    statusVal.style.color = finalMbps > 25 ? "#00d4ff" : finalMbps > 5 ? "#f59e0b" : "#ef4444";
+  }
 
   setRing(1);
   resetBtn();
   global.network.testing = false;
+  return parseFloat(finalMbps);
 }
 
 function setRing(pct) {
   const ring = document.getElementById("ringFill");
-  const circ = 2 * Math.PI * 52; // r=52
+  if (!ring) return;
+  const circ = 2 * Math.PI * 52;
   ring.style.strokeDashoffset = circ - pct * circ;
 }
 
 function resetBtn() {
   const btn = document.getElementById("startBtn");
+  if (!btn) return;
   btn.disabled = false;
   btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Retest`;
 }

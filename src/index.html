@@ -46,6 +46,22 @@
         </div>
     </header>
 
+    <!-- ═══════════════════ NETWORK SPEED TOAST ═══════════════════ -->
+    <div class="net-toast" id="netToast">
+        <div class="net-toast__icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                <circle cx="12" cy="20" r="1" fill="currentColor" />
+            </svg>
+        </div>
+        <div class="net-toast__body">
+            <span class="net-toast__label">Your connection</span>
+            <span class="net-toast__speed"><span id="netMbps"></span> <span class="net-toast__unit">Mbps</span></span>
+        </div>
+    </div>
+
     <!-- ═══════════════════ QUOTE OF THE DAY (fixed left) ═══════════════════ -->
     <aside class="quote-widget">
         <div class="quote-label">
@@ -89,6 +105,10 @@
 
             </div>
         </div>
+    </section>
+
+    <!-- ═══════════════════ CONNECTION CONCLUSION ═══════════════════ -->
+    <section class="conclusion-section">
     </section>
 
     <!-- ═══════════════════ PROACTIVE PROTECTION ═══════════════════ -->
